@@ -18,7 +18,7 @@ import java.util.Optional;
 public class CartService {
     @Qualifier("test")
     private final CacheManager cacheManager;
-    private final RestTemplate restTemplate; //ProductService
+    private final RestTemplate restTemplate;
     @Value("${spring.cache.user.name}")
     private String CACHE_CART;
     private Cart cart;
