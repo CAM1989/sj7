@@ -1,4 +1,4 @@
-package com.geekbrains.spring.web.entities;
+package com.geekbrains.spring.web.order.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

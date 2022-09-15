@@ -1,7 +1,7 @@
 server:
-  port: 8189
+  port: 8186
   servlet:
-    context-path: /web-market-core
+    context-path: /web-market-order
 spring:
   datasource:
     driver-class-name: org.h2.Driver
@@ -16,3 +16,7 @@ spring:
   h2:
     console:
       enabled: true
+  kafka:
+    consumer:
+      group-id: 1
+    topic: "order-topic"
