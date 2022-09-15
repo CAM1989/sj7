@@ -1,4 +1,4 @@
-package com.geekbrains.spring.web.dto;
+package com.geekbrains.spring.web.order.dto;
 
 import lombok.Data;
 

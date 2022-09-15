@@ -58,11 +58,4 @@ public class CacheConfig {
                 .build();
         return cacheManager;
     }
-
-    @Bean
-    public RestTemplate restTemplate(){
-        return new RestTemplate();
-    }
-
-
 }

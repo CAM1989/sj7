@@ -1,8 +1,7 @@
-package com.geekbrains.spring.web.configs;
+package com.geekbrains.spring.web.cart.configs;
 
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class AppConfig {
-
+public class ApiConfig {
 }

@@ -1,6 +1,7 @@
 package com.geekbrains.spring.web.cart.controllers;
 
 import com.geekbrains.spring.web.cart.dto.Cart;
+import com.geekbrains.spring.web.cart.dto.OrderDetailsDto;
 import com.geekbrains.spring.web.cart.services.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,4 +27,8 @@ public class CartController {
         service.clear(cartName);
     }
 
+    @PostMapping("/createOrder")
+    public void createOrder(@RequestBody String username, @RequestBody OrderDetailsDto orderDetailsDto, @RequestBody String cartName) {
+        service.createOrder(username, orderDetailsDto, cartName);
+    }
 }
