@@ -1,5 +1,6 @@
 package com.geekbrains.spring.web.order.entities;
 
+import com.geekbrains.spring.web.order.dto.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,9 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    @ManyToOne
+//    @JoinColumn(name = "product_id")
+//    private ProductDto productDto;
     private Long productId;
 
     private Integer quantity;

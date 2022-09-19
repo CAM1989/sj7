@@ -9,7 +9,9 @@
     <tbody>
     <tr ng-repeat="item in Cart.items">
         <td>{{item.title}}</td>
-        <td>{{item.quantity}}</td>
+        <td>{{item.quantity}}
+            <button class="btn btn-primary" ng-click="removeFromCart(item.productId)">-</button>
+            <button class="btn btn-primary" ng-click="addToCart(item.productId)">+</button></td>
         <td>{{item.pricePerProduct + ' x ' + item.quantity + ' = ' + item.price}}</td>
     </tr>
     <tr>
@@ -21,18 +23,8 @@
 </table>
 <p>
     <button class="btn btn-secondary" ng-click="clearCart()">Очистить корзину</button>
+    <button class="btn btn-secondary" onclick="window.location.href='#!/orders';">Перейти к оформлению</button>
     <button class="btn btn-danger" ng-click="showCurrentUserInfo()">Обо мне</button>
 </p>
 
-    <p></p>
-    <h3>Детали заказа</h3>
-    <form novalidate>
-        <input class="form-control" type="text" placeholder="Номер телефона получателя" ng-model="orderDetails.phone">
-        <p></p>
-        <input class="form-control" type="text" placeholder="Адрес доставки" ng-model="orderDetails.address">
-        <p></p>
-    </form>
-
-    <button class="btn btn-primary" ng-click="checkOut()" ng-show="isUserLoggedIn() && Cart.items.length > 0">Оформить заказ</button>
-    <button class="btn btn-secondary" ng-click="disabledCheckOut()" ng-show="!isUserLoggedIn() && Cart.items.length > 0">Оформить заказ</button>
 </div>

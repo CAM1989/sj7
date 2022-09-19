@@ -8,6 +8,10 @@ spring:
     url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL
     username: sa
     password:
+  kafka:
+    consumer:
+      group-id: 223
+    bootstrap-servers: localhost:9092
   jpa:
     show-sql: true
     properties:
@@ -16,7 +20,5 @@ spring:
   h2:
     console:
       enabled: true
-  kafka:
-    consumer:
-      group-id: 1
-    topic: "order-topic"
+
+

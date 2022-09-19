@@ -14,8 +14,3 @@ spring:
     user:
       expire-time: 100
       name: "Cart"
-  kafka:
-    consumer:
-      group-id: 1
-    bootstrap-servers: localhost:9092
-    topic: "order-topic"

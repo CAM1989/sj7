@@ -1,5 +1,6 @@
 package com.geekbrains.spring.web.order.dto;
 
+
 import lombok.Data;
 import org.springframework.cache.CacheManager;
 
@@ -12,13 +13,16 @@ public class Cart {
 
     private List<OrderItemDto> items;
     private  int totalPrice;
+
     public Cart() {
         this.items = new ArrayList<>();
     }
+
     public Cart(String cartName, CacheManager manager){
-        this.items = new ArrayList<>();
-        this.totalPrice = 0;
-    }
+            this.items = new ArrayList<>();
+            this.totalPrice = 0;
+        }
+
     public boolean addProductCount(Long id){
         for(OrderItemDto o: items){
             if(o.getProductId().equals(id)){
@@ -37,16 +41,19 @@ public class Cart {
         items.add(new OrderItemDto(product));
         recalculate();
     }
+
     private void recalculate(){
         totalPrice = 0;
         for(OrderItemDto o: items){
             totalPrice += o.getPrice();
         }
     }
+
     public void removeProduct(Long id){
         items.removeIf(o -> o.getProductId().equals(id));
         recalculate();
     }
+
     public void decreaseProduct(Long id){
         Iterator<OrderItemDto> iter = items.iterator();
         while (iter.hasNext()){
@@ -61,10 +68,12 @@ public class Cart {
             }
         }
     }
+
     public void clear(){
         items.clear();
         totalPrice = 0;
     }
+
     public void merge(Cart another) {
         for (OrderItemDto anotherItem : another.items) {
             boolean merged = false;

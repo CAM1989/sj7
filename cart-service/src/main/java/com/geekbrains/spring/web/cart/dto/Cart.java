@@ -1,6 +1,9 @@
 package com.geekbrains.spring.web.cart.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.cache.CacheManager;
 
 import java.util.ArrayList;
@@ -8,9 +11,11 @@ import java.util.Iterator;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class Cart {
-
+    @Schema(description = "Лист покупок")
     private List<OrderItemDto> items;
+    @Schema(description = "Итоговая сумма")
     private  int totalPrice;
 
     public Cart() {
@@ -66,6 +71,19 @@ public class Cart {
                 return;
             }
         }
+    }
+
+    public boolean decreaseProductCount(Long id){
+        for(OrderItemDto o: items){
+            if(o.getProductId().equals(id)){
+                if (o.getQuantity() <= 0) removeProduct(id);
+                else
+                    o.changeQuantity(-1);
+                recalculate();
+                return true;
+            }
+        }
+        return false;
     }
 
     public void clear(){

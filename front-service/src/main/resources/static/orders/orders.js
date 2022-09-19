@@ -8,17 +8,20 @@ angular.module('market-front').controller('orderController', function ($scope, $
             });
     };
     $scope.loadCart = function () {
-        $http.post('http://localhost:5555/cart/api/v1/carts', $localStorage.cartName)
-            .then(function (response) {
-                $scope.Cart = response.data;
-            });}
+            $http.post('http://localhost:5555/cart/api/v1/carts', $localStorage.cartName)
+                .then(function (response) {
+                    $scope.Cart = response.data;
+                });}
 
     $scope.checkOut = function () {
-        if ($scope.orderDetailsDto == null)
-        {alert("Заполните детали заказа");}
-        else {
-            $http.post(contextPath + '/orders/' + $localStorage.cartName, $scope.orderDetailsDto
-            ).then(function (response) {
+    if ($scope.orderDetailsDto == null)
+    {alert("Заполните детали заказа");}
+    else {
+        $http.post(contextPath + '/orders/' + $localStorage.cartName, $scope.orderDetailsDto
+//            url: contextPath + '/orders/' + $localStorage.cartName,
+//            method: 'POST',
+//            data: {$scope.orderDetailsDto}
+        ).then(function (response) {
                 $scope.loadCart();
                 $scope.orderDetailsDto = null;
                 alert($scope.orderDetailsDto.address);
@@ -31,12 +34,12 @@ angular.module('market-front').controller('orderController', function ($scope, $
     };
 
     $rootScope.isUserLoggedIn = function () {
-        if ($localStorage.springWebUser) {
-            return true;
-        } else {
-            return false;
-        }
-    };
+            if ($localStorage.springWebUser) {
+                return true;
+            } else {
+                return false;
+            }
+        };
     $scope.loadOrders();
     $scope.loadCart();
 
