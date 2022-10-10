@@ -40,6 +40,11 @@ angular.module('market-front').controller('orderController', function ($scope, $
                 return false;
             }
         };
+
+    $scope.goToPay = function (orderId) {
+        $location.path('/order_pay/' + orderId);
+    };
+
     $scope.loadOrders();
     $scope.loadCart();
 
