@@ -1,7 +1,5 @@
 package com.geekbrains.spring.web.order.services;
 
-
-import com.geekbrains.spring.web.exceptions.ResourceNotFoundException;
 import com.geekbrains.spring.web.order.api.CartApi;
 import com.geekbrains.spring.web.order.api.ProductApi;
 import com.geekbrains.spring.web.order.dto.Cart;
@@ -25,8 +23,6 @@ import java.util.stream.Collectors;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-//    private final RestTemplate cartTemplate;
-
     @Autowired
     private ProductApi productApi;
 
@@ -50,6 +46,8 @@ public class OrderService {
         order.setPhone(orderDetailsDto.getPhone());
         order.setUsername(username);
         order.setTotalPrice(currentCart.getTotalPrice());
+        order.setBillId(orderDetailsDto.getBillId());
+        order.setStatus(orderDetailsDto.getStatus());
         List<OrderItem> items = currentCart.getItems().stream()
                 .map(o -> {
                     OrderItem orderItem = new OrderItem();
@@ -72,6 +70,20 @@ public class OrderService {
         } catch (Exception e) {
             return new ArrayList<>();
         }
+    }
+
+    public Order findOrderById(Long id) {
+        return orderRepository.findById(id).orElseThrow();
+    }
+
+    public Order findOrderByBillId(String billId) {
+        return orderRepository.findByBillId(billId);
+    }
+
+    public void changeOrderStatusByBillId (String billId, String status) {
+        Order order = orderRepository.findByBillId(billId);
+        order.setStatus(status);
+        orderRepository.save(order);
     }
 
 }
